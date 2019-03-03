@@ -2,6 +2,8 @@
 using Forum.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
+using System.Text;
 
 namespace Forum
 {
@@ -9,6 +11,7 @@ namespace Forum
     {
         public static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
 
             var context = new ForumDbContext();
 
@@ -16,7 +19,12 @@ namespace Forum
 
             var categories = context.Categories
                 .Include(c => c.Posts)
-                .ThenInclude(p => p.Author);
+                .ThenInclude(p => p.Author)
+                .Include(c => c.Posts)
+                .ThenInclude(p => p.Replies)
+                .ThenInclude(r => r.Author)
+                .ToArray();
+                
 
             foreach (var cat in categories)
             {
@@ -73,16 +81,16 @@ namespace Forum
 
 
             var posts = new[] {
-                new Post("C# Problem", "Not good", categories[0], users[0]),
-                new Post("Jupiter Notebook", "Some help needed", categories[2], users[1]),
-                new Post("Support wanted", "Pls Help", categories[1], users[2]),
+                new Post("C# Проблем", "Not good", categories[0], users[0]),
+                new Post("Jupiter Notebook", "Some помощ needed", categories[2], users[1]),
+                new Post("Support wanted", "Моля Help", categories[1], users[2]),
             };
 
             context.Posts.AddRange(posts);
 
 
             var replies = new[] {
-                new Reply(content:"Stupid post", post: posts[0], author:users[1]),
+                new Reply(content:"ТЪп post", post: posts[0], author:users[1]),
                 new Reply(content:"I can help you", post: posts[1], author:users[2]),
             };
 
