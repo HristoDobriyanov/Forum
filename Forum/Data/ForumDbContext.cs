@@ -48,7 +48,8 @@ namespace Forum.Data
             builder.Entity<Post>()
                 .HasMany(r => r.Replies)
                 .WithOne(r => r.Post)
-                .HasForeignKey(r => r.PostId);
+                .HasForeignKey(r => r.PostId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<User>()
                 .HasMany(p => p.Posts)
