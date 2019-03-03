@@ -4,6 +4,30 @@ namespace Forum.Data.Models
 {
     public class Post
     {
+        public Post()
+        {
+
+        }
+
+
+        public Post(string title, string content, Category category, User author)
+        {
+            this.Title = title;
+            this.Content = content;
+            this.Category = category;
+            this.Author = author;
+        }
+
+        public Post(string title, string content, int categoryId, int authorId)
+        {
+            this.Title = title;
+            this.Content = content;
+            this.CategoryId = categoryId;
+            this.AutorId = authorId;
+        }
+
+
+
         public int Id { get; set; }
 
         public string Title { get; set; }

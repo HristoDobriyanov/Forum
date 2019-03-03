@@ -37,6 +37,29 @@ namespace Forum
             };
 
             context.Users.AddRange(users);
+
+
+
+            var categories = new[] {
+                new Category("C#"),
+                new Category("Support"),
+                new Category("Python"),
+                new Category("EF Core")
+            };
+
+
+            context.Categories.AddRange(categories);
+
+            var posts = new[] {
+                new Post(),
+                new Post(),
+                new Post(),
+                new Post(),
+            };
+
+
+
+
             context.SaveChanges();
         }
     }
