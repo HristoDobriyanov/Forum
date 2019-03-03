@@ -17,13 +17,17 @@ namespace Forum
 
             ResetDatabase(context);
 
+            //var categories = context.Categories
+            //    .Include(c => c.Posts)
+            //    .ThenInclude(p => p.Author)
+            //    .Include(c => c.Posts)
+            //    .ThenInclude(p => p.Replies)
+            //    .ThenInclude(r => r.Author)
+            //    .ToArray();
+
+
             var categories = context.Categories
-                .Include(c => c.Posts)
-                .ThenInclude(p => p.Author)
-                .Include(c => c.Posts)
-                .ThenInclude(p => p.Replies)
-                .ThenInclude(r => r.Author)
-                .ToArray();
+                .Select()
                 
 
             foreach (var cat in categories)
@@ -82,7 +86,7 @@ namespace Forum
 
             var posts = new[] {
                 new Post("C# Проблем", "Not good", categories[0], users[0]),
-                new Post("Jupiter Notebook", "Some помощ needed", categories[2], users[1]),
+                new Post("Jupyter Notebook", "Some помощ needed", categories[2], users[1]),
                 new Post("Support wanted", "Моля Help", categories[1], users[2]),
             };
 
