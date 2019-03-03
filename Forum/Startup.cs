@@ -1,5 +1,6 @@
 ﻿using Forum.Data;
 using Forum.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace Forum
@@ -10,20 +11,33 @@ namespace Forum
         {
 
             var context = new ForumDbContext();
+            ResetDatabase(context);
 
-            var user = new[]
+
+        }
+
+        private static void ResetDatabase(ForumDbContext context)
+        {
+            context.Database.EnsureDeleted();
+
+            context.Database.Migrate();
+
+            Seed(context);
+        }
+
+        private static void Seed(ForumDbContext context)
+        {
+            var users = new[]
             {
                 new User(username:"Gosho", password:"123"),
                 new User(username:"Ivan", password:"2223"),
                 new User(username:"Pesho", password:"444"),
                 new User(username:"Ginka", password:"111"),
                 new User(username:"Canka", password:"321"),
-
-
             };
 
-
-                        
+            context.Users.AddRange(users);
+            context.SaveChanges();
         }
     }
 }
