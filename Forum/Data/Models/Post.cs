@@ -6,9 +6,7 @@ namespace Forum.Data.Models
     {
         public Post()
         {
-
         }
-
 
         public Post(string title, string content, Category category, User author)
         {
@@ -26,8 +24,6 @@ namespace Forum.Data.Models
             this.AutorId = authorId;
         }
 
-
-
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -43,6 +39,5 @@ namespace Forum.Data.Models
         public Category Category { get; set; }
 
         public ICollection<Reply> Replies { get; set; }
-
     }
 }

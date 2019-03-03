@@ -6,7 +6,6 @@ namespace Forum.Data.Models
     {
         public Category()
         {
-
         }
 
         public Category(string name)
