@@ -29,6 +29,9 @@ namespace Forum.Data
 
         public DbSet<Reply> Replies { get; set; }
 
+        public DbSet<Tag> Tags { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             if (!builder.IsConfigured)
@@ -37,6 +40,7 @@ namespace Forum.Data
                 builder.UseSqlServer(Configuration.ConnectionString);
             }
         }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -61,9 +65,9 @@ namespace Forum.Data
                 .WithOne(a => a.Author)
                 .HasForeignKey(a => a.AuthorId);
 
-               
-
+            builder.Entity<PostTag>()
+                .ToTable("PostsTags")
+                .HasKey(pt => new { pt.PostId, pt.TagId});
         }
-
     }
 }

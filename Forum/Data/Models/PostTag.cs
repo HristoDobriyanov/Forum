@@ -1,7 +1,10 @@
-﻿namespace Forum.Data.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Forum.Data.Models
 {
     public class PostTag
     {
+        
         public int PostId { get; set; }
         public Post Post { get; set; }
 
