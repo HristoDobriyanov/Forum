@@ -27,7 +27,12 @@ namespace Forum
 
 
             var categories = context.Categories
-                .Select()
+                .Include(c => c.Posts)
+                .ThenInclude(p => p.Author)
+                .Include(c => c.Posts)
+                .ThenInclude(p => p.Replies)
+                .ThenInclude(r => r.Author)
+                .ToArray();
                 
 
             foreach (var cat in categories)
@@ -45,10 +50,7 @@ namespace Forum
                         Console.WriteLine($"-----{reply.Content} from {reply.Author.Username}");
                     }
                 }
-
             }
-
-
         }
 
         private static void ResetDatabase(ForumDbContext context)

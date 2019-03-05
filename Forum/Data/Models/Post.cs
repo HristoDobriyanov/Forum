@@ -39,5 +39,7 @@ namespace Forum.Data.Models
         public Category Category { get; set; }
 
         public ICollection<Reply> Replies { get; set; }
+
+        public ICollection<PostTag> PostTags { get; set; }
     }
 }
