@@ -31,6 +31,9 @@ namespace Forum.Data
 
         public DbSet<Tag> Tags { get; set; }
 
+        public DbSet<PostTag> PostsTags { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
@@ -64,6 +67,9 @@ namespace Forum.Data
                 .HasMany(r => r.Replies)
                 .WithOne(a => a.Author)
                 .HasForeignKey(a => a.AuthorId);
+
+            builder.Entity<Tag>()
+                .ToTable("Tags");
 
             builder.Entity<PostTag>()
                 .ToTable("PostsTags")

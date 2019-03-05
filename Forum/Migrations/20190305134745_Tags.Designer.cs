@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Forum.Migrations
 {
     [DbContext(typeof(ForumDbContext))]
-    [Migration("20190305133923_Tags")]
+    [Migration("20190305134745_Tags")]
     partial class Tags
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
